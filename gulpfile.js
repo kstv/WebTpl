@@ -13,8 +13,6 @@ var htmlmin = require('../../../node_modules/gulp-htmlmin'); //压缩html文件
 var sprite = require('../../../node_modules/gulp.spritesmith'); //雪碧图
 var autoprefixer = require('../../../node_modules/gulp-autoprefixer'); //自动补全前缀
 var livereload = require('../../../node_modules/gulp-livereload'); //自动刷新浏览器
-var cache = require('../../../node_modules/gulp-cache');
-var pngquant = require('../../../node_modules/imagemin-pngquant');
 //npm install gulp gulp-clean-css gulp-notify gulp.spritesmith gulp-imagemin gulp-cache imagemin-pngquant gulp-htmlmin gulp-jshint gulp-sass gulp-concat gulp-uglify gulp-rename gulp-livereload gulp-autoprefixer --save-dev
 // 检查js
 gulp.task('jslint', function() {
@@ -37,8 +35,14 @@ gulp.task('sass', function() {
 });
 // 合并，压缩js文件
 gulp.task('scripts', function() {
+  var config = {
+    mangle: {
+      except: ['define', 'require', 'module', 'exports', '$']
+    },
+    compress: false
+  };
   return gulp.src('./Dev/src/js/define/*.js')
-    //.pipe(uglify())
+    .pipe(uglify(config))
     .pipe(gulp.dest('./Release/src/js/define'))
     .pipe(livereload())
     .pipe(notify("js压缩完成！"));
@@ -52,15 +56,8 @@ gulp.task('libjs', function() {
 });
 // 图片压缩
 gulp.task('imagesmin', function() {
-  return gulp.src('./Dev/src/imgs/**/*.{jpg,png,gif}')
-    //.pipe(imagesmin())
-    .pipe(cache(imagesmin({
-      progressive: true,
-      svgoPlugins: [{
-        removeViewBox: false
-      }],
-      use: [pngquant()]
-    })))
+  return gulp.src('./Dev/src/imgs/**/*.{jpg,png,gif,jpeg}')
+    .pipe(imagesmin())
     .pipe(gulp.dest('./Release/src/imgs'))
     .pipe(notify('图片任务完成'));
 });
@@ -104,14 +101,12 @@ gulp.task('sprites', function() {
       }
     }))
     .pipe(gulp.dest('./Dev/src/css'))
-    //.pipe(gulp.dest('./Release/src/css'))
     .pipe(notify("雪碧图生成成功"));
 });
 //合并css任务
 gulp.task('concatcss', function() {
   return gulp.src('./Dev/src/css/*.css')
     .pipe(concat('index.css'))
-    //.pipe(gulp.dest('./Dev/src/css'))
     .pipe(gulp.dest('./Release/src/css'))
     .pipe(livereload())
     .pipe(notify("css合并完成"));
@@ -124,29 +119,25 @@ gulp.task('plugincss', function() {
 });
 // 默认任务
 gulp.task('default', function() {
-  gulp.run('imagesmin', 'sprites', 'sass', 'jslint', 'libjs', 'scripts', 'plugincss', 'concatcss', 'htmlmin');
+  gulp.run('sprites', 'sass', 'jslint', 'libjs', 'scripts', 'plugincss', 'concatcss', 'htmlmin', 'imagesmin');
   gulp.watch('./Dev/src/js/**/*.js', function() {
     livereload.listen();
-    gulp.run('jslint', 'libjs','scripts');
+    gulp.run('jslint', 'libjs', 'scripts');
   })
-  gulp.watch('./Dev/src/imgs/**/*.{png,jpg,gif,ico}', function() {
+  gulp.watch('./Dev/src/imgs/**/*.{png,jpg,gif,jpeg}', function() {
     livereload.listen();
     gulp.run('sprites', 'imagesmin');
   })
   gulp.watch('./Dev/web/**/*.html', function() {
     livereload.listen();
-    gulp.run('htmlmin','sprites', 'imagesmin');
+    gulp.run('htmlmin', 'sprites', 'imagesmin','sass','concatcss');
   })
   gulp.watch('./Dev/src/css/**/*.scss', function() {
     livereload.listen();
     gulp.run('sass');
   })
-  gulp.watch('./Dev/src/css/*.css', function() {
+  gulp.watch('./Dev/src/css/**/*.css', function() {
     livereload.listen();
-    gulp.run('concatcss');
-  })
-  gulp.watch('./Dev/src/css/plugin/*.css', function() {
-    livereload.listen();
-    gulp.run('plugincss');
+    gulp.run('concatcss','plugincss');
   })
 });

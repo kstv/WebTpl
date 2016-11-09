@@ -1,0 +1,75 @@
+.section-box {
+  width: 100%;
+  text-align: center;
+  background: url("../imgs/demo/section1.jpg") center center no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.section {
+  position: relative;
+  overflow: hidden;
+}
+.section .fp-tableCell{
+  background-color: rgba(0,0,0,.75);
+}
+#section1{
+  .mgt-80{
+    margin-top: 80px;
+  }
+  .img1{
+    position: relative;
+    right: 120%;
+  }
+  .img2{
+    position: relative;
+    left: 120%;
+  }
+}
+#section2{
+  background: url("../imgs/demo/section1.jpg") center center no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  .img1{
+    position: relative;
+    top: -120%;
+  }
+}
+#section3{
+  background: url("../imgs/demo/section1.jpg") center center no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  .img1{
+    position: relative;
+    bottom: -120%;
+  }
+}
+#footer-warp .fp-tableCell{
+  background-color: #f7f1f1;
+  .footer-box{
+    width: 800px;
+    margin: 230px auto 40px;
+    height: 245px;background: #ffffff;
+    position: relative;
+    .phone-box{
+      position: absolute;
+      width: 50%;
+      bottom: 20px;
+      left: 0;
+    }
+    .code-box{
+      width: 50%;
+      position: absolute;
+      bottom: 40px;
+      right: 0;
+      .qr-code{
+        background-color: #fff;
+      }
+    }
+  }
+  .footer-icp{
+    height: 50px;
+    width: 100%;
+    line-height: 50px;
+    background-color: #141414;
+  }
+}
