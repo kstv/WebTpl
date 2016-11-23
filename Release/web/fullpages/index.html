@@ -1,1 +1,100 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><title>股牛邦介绍页</title><meta name="renderer" content="webkit"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><link rel="stylesheet" href="../../src/css/index.css"><link rel="stylesheet" href="../../src/css/jquery.fullpage.css"></head><body><div class="section-box" id="fullpage"><div class="section" id="section1"><ul><li><img src="../../src/imgs/demo/gnb-logo.png" class="img1"></li><li class="mgt-80"><img src="../../src/imgs/demo/s1-wz.png" class="img2"></li></ul></div><div class="section" id="section2"><img src="../../src/imgs/demo/s2-wz.png" class="img1"></div><div class="section" id="section3"><img src="../../src/imgs/demo/s3-wz.png" class="img1"></div><div class="section fp-auto-height" id="footer-warp"><div class="footer-box"><div class="phone-box"><img src="../../src/imgs/demo/phone-img.png"></div><div class="code-box"><ul><li><img src="../../src/imgs/demo/gnb-code.png" class="pd-20 qr-code"></li><li class="fs-30 fw-300 mgt-20">立即扫描加入</li><li class="c-646 fs-20 fw-300 mgt-10">股牛邦微信订阅号（guniubang）</li></ul></div></div><p class="fs-18 fw-300 tc c-fff footer-icp">2016 股牛邦 all rights reserved&nbsp;&nbsp;|&nbsp;&nbsp;备案号XXXXXX&nbsp;&nbsp;&nbsp;&nbsp;北京双融宝科技有限公司</p></div></div><script src="../../src/js/lib/jquery-1.11.1.min.js"></script><script src="../../src/js/lib/jquery.fullpage.min.js"></script><script src="../../src/js/lib/velocityJs.js"></script><script>$(document).ready(function(){var i=window.innerHeight;$(".section").height(i),$("#fullpage").fullpage({verticalCentered:!0,css3:!1,anchors:[],navigation:!0,navigationPosition:"right",navigationTooltips:[],fitToSection:!0,afterLoad:function(i,t){1==t&&($("#section1").find(".img1").velocity({right:"0"},1500,"easeOutExpo"),$("#section1").find(".img2").velocity({left:"0"},1500,"easeOutExpo")),2==t&&$("#section2").find("img").velocity({top:"0"},1500,"easeOutExpo"),3==t&&$("#section3").find("img").velocity({bottom:"0"},1500,"easeOutExpo")},onLeave:function(i,t){"1"==i&&($("#section1").find(".img1").velocity({right:"-120%"},1500,"easeOutExpo"),$("#section1").find(".img2").velocity({left:"-120%"},1500,"easeOutExpo")),"2"==i&&$("#section2").find("img").velocity({top:"-120%"},1500,"easeOutExpo")}})})</script></body></html>
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>股牛邦介绍页</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../src/css/index.css" />
+    <link rel="stylesheet" href="../../src/css/jquery.fullpage.css">
+  </head>
+
+  <body>
+    <div class="section-box" id="fullpage">
+      <div class="section" id="section1">
+        <ul>
+          <li><img src="../../src/imgs/demo/gnb-logo.png" class="img1"></li>
+          <li class="mgt-80"><img src="../../src/imgs/demo/s1-wz.png" class="img2"></li>
+        </ul>
+      </div>
+      <div class="section" id="section2">
+        <img src="../../src/imgs/demo/s2-wz.png" class="img1">
+      </div>
+      <div class="section" id="section3">
+        <img src="../../src/imgs/demo/s3-wz.png" class="img1">
+      </div>
+      <div class="section fp-auto-height" id="footer-warp">
+        <div class="footer-box">
+          <div class="phone-box">
+            <img src="../../src/imgs/demo/phone-img.png">
+          </div>
+          <div class="code-box">
+            <ul>
+              <li><img src="../../src/imgs/demo/gnb-code.png" class="pd-20 qr-code"></li>
+              <li class="fs-30 fw-300 mgt-20">立即扫描加入</li>
+              <li class="c-646 fs-20 fw-300 mgt-10">股牛邦微信订阅号（guniubang）</li>
+            </ul>
+          </div>
+        </div>
+        <p class="fs-18 fw-300 tc c-fff footer-icp">2016 股牛邦 all rights reserved&nbsp;&nbsp;|&nbsp;&nbsp;备案号XXXXXX&nbsp;&nbsp;&nbsp;&nbsp;北京双融宝科技有限公司</p>
+      </div>
+    </div>
+    <script src="../../src/js/lib/jquery-1.11.1.min.js"></script>
+    <script src="../../src/js/lib/jquery.fullpage.min.js"></script>
+    <script src="../../src/js/lib/velocityJs.js"></script>
+    <script>
+      $(document).ready(function() {
+        var sH = window.innerHeight;
+        $('.section').height(sH);
+        $('#fullpage').fullpage({
+          verticalCentered: true,
+          css3: false,
+          anchors: [],
+          navigation: true,
+          navigationPosition: 'right',
+          navigationTooltips: [],
+          fitToSection: true,
+          afterLoad: function(anchorLink, index) {
+            if(index == 1) {
+              $('#section1').find('.img1').velocity({
+                right: '0'
+              }, 1500, 'easeOutExpo');
+              $('#section1').find('.img2').velocity({
+                left: '0'
+              }, 1500, 'easeOutExpo');
+            }
+            if(index == 2) {
+              $('#section2').find('img').velocity({
+                top: '0'
+              }, 1500, 'easeOutExpo');
+            }
+            if(index == 3) {
+              $('#section3').find('img').velocity({
+                bottom: '0'
+              }, 1500, 'easeOutExpo');
+            }
+          },
+          onLeave: function(index, direction) {
+            if(index == '1') {
+              $('#section1').find('.img1').velocity({
+                right: '-120%'
+              }, 1500, 'easeOutExpo');
+              $('#section1').find('.img2').velocity({
+                left: '-120%'
+              }, 1500, 'easeOutExpo');
+            }
+            if(index == '2') {
+              $('#section2').find('img').velocity({
+                top: '-120%'
+              }, 1500, 'easeOutExpo');
+            }
+          }
+        });
+      });
+    </script>
+
+  </body>
+
+</html>
